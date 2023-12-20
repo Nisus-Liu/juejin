@@ -13,3 +13,8 @@ MAIL_USER = os.getenv("MAIL_USER")
 
 SWITCH = os.getenv("SWITCH", "on")
 PUBLISH_SWITCH = os.getenv("PUBLISH_SWITCH", "off")
+
+SLIDER_IMG_TEMP = "temp/slider_img.png"
+SLIDER_BACKGROUND_IMG_TEMP = "temp/slider_background_img.png"
+SLIDER_IMG_BAK_TEMP = "temp/slider_img_bak.png"
+SLIDER_BACKGROUND_IMG_BAK_TEMP = "temp/slider_background_img_bak.png"

@@ -2,18 +2,24 @@ import cv2
 import numpy as np
 import requests
 
+from core.config import SLIDER_IMG_BAK_TEMP, SLIDER_BACKGROUND_IMG_BAK_TEMP
+
 
 class Track(object):
     # 处理前图片
-    slider = "temp/slider.png"
-    background = "temp/background.png"
+    # slider = "temp/slider.png"
+    # background = "temp/background.png"
+    slider = None
+    background = None
 
     # 将处理之后的图片另存
-    slider_bak = "temp/slider_bak.png"
-    background_bak = "temp/background_bak.png"
+    slider_bak = SLIDER_IMG_BAK_TEMP
+    background_bak = SLIDER_BACKGROUND_IMG_BAK_TEMP
 
-    def get_track(self, slider_url, background_url) -> list:
-        distance = self.get_slide_distance(slider_url, background_url)
+    def get_track(self, sliderImg, backgroundImg) -> list:
+        self.slider = sliderImg
+        self.background = backgroundImg
+        distance = self.get_slide_distance()
         result = self.gen_normal_track(distance)
         return result
 
@@ -66,11 +72,10 @@ class Track(object):
         with open(slider, 'wb') as f:
             f.write(r.content)
 
-    def get_slide_distance(self, slider_url, background_url):
-
-        # 下载验证码背景图,滑动图片
-        self.onload_save_img(slider_url, self.slider)
-        self.onload_save_img(background_url, self.background)
+    def get_slide_distance(self):
+        # # 下载验证码背景图,滑动图片
+        # self.onload_save_img(slider_url, self.slider)
+        # self.onload_save_img(background_url, self.background)
         # 读取进行色度图片，转换为numpy中的数组类型数据，
         slider_pic = cv2.imread(self.slider, 0)
         background_pic = cv2.imread(self.background, 0)

@@ -3,15 +3,17 @@ name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
 
+[[source]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
+verify_ssl = true
+name = "pypitunatsinghuaedu"
+
 [dev-packages]
 
 [packages]
 requests = "*"
-opencv-python = "*"
 selenium = "*"
 numpy = "*"
 jinja2 = "*"
 neo4j = "*"
-
-[requires]
-python_version = "3.6"
+opencv-python = {version = "*", index = "pypitunatsinghuaedu"}
